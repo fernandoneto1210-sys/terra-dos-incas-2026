@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Peru com Amigos 2026 · Oficina de Turismo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold:    #C9A84C;
+      --dark:    #1A1A2E;
+      --accent:  #7B2D8B;
+      --light:   #F9F5EE;
+      --green:   #2E7D52;
+      --red:     #C62828;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: #333;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(26,26,46,0.97);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 32px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    nav img { height: 44px; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .5px;
+      transition: color .3s;
+    }
+
+    nav ul li a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 60px;
+      background:
+        linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.52)),
+        url('https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=1800&q=90') center/cover no-repeat;
+      color: #fff;
+    }
+
+    .hero-logo {
+      width: 200px;
+      margin-bottom: 28px;
+      filter: drop-shadow(0 3px 12px rgba(0,0,0,.7));
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      letter-spacing: 3px;
+      text-shadow: 0 3px 16px rgba(0,0,0,.5);
+      line-height: 1.1;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(.95rem, 2.5vw, 1.3rem);
+      font-weight: 300;
+      margin-top: 16px;
+      color: var(--gold);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .hero .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .badge {
+      background: rgba(255,255,255,.12);
+      border: 1px solid var(--gold);
+      border-radius: 50px;
+      padding: 10px 24px;
+      font-size: .88rem;
+      backdrop-filter: blur(6px);
+      font-weight: 500;
+    }
+
+    .scroll-hint {
+      margin-top: 60px;
+      font-size: .82rem;
+      opacity: .7;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(10px); }
+    }
+
+    /* ── SECTION TITLES ── */
+    section { padding: 80px 20px; }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .section-title span {
+      font-size: .78rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--dark);
+    }
+
+    .section-title .line {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin: 14px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ── ESSENCIAIS ── */
+    .essentials { background: #fff; }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .info-card {
+      background: var(--light);
+      border-radius: 18px;
+      padding: 34px 26px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,.07);
+      border-top: 4px solid var(--gold);
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.12);
+    }
+
+    .info-card .icon { font-size: 2.6rem; margin-bottom: 16px; }
+    .info-card h3 { color: var(--dark); margin-bottom: 10px; font-size: 1.05rem; font-weight: 600; }
+    .info-card p  { font-size: .86rem; color: #555; line-height: 1.7; }
+
+    /* ── ITINERÁRIO ── */
+    .itinerary-bg {
+      background: linear-gradient(135deg, var(--dark) 0%, #16213E 100%);
+      color: #fff;
+    }
+
+    .itinerary-bg .section-title h2 { color: #fff; }
+    .itinerary-bg .section-title span { color: var(--gold); }
+
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,.2));
+      border-radius: 2px;
+    }
+
+    .day {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 36px;
+      position: relative;
+    }
+
+    .day-number {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      box-shadow: 0 0 0 5px #16213E, 0 0 0 7px var(--gold);
+    }
+
+    .day-content {
+      background: rgba(255,255,255,.06);
+      border-radius: 16px;
+      padding: 22px 26px;
+      flex: 1;
+      border-left: 3px solid var(--gold);
+      transition: background .3s;
+    }
+
+    .day-content:hover { background: rgba(255,255,255,.10); }
+
+    .day-content h3 {
+      color: var(--gold);
+      font-size: .95rem;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .day-content p { font-size: .86rem; line-height: 1.8; color: #ccc; }
+
+    .tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tag {
+      display: inline-block;
+      font-size: .72rem;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .tag.green  { background: var(--green); color: #fff; }
+    .tag.blue   { background: #1565C0; color: #fff; }
+    .tag.purple { background: var(--accent); color: #fff; }
+    .tag.gold   { background: var(--gold); color: var(--dark); }
+
+    /* ── SERVIÇOS ── */
+    .services-section { background: #F0F4F8; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+
+    .service-box {
+      background: #fff;
+      border-radius: 18px;
+      padding: 34px 30px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
+
+    .service-box.included { border-top: 5px solid var(--green); }
+    .service-box.excluded { border-top: 5px solid var(--red); }
+
+    .service-box h3 {
+      font-size: 1.05rem;
+      margin-bottom: 22px;
+      color: var(--dark);
+    }
+
+    .service-box ul { list-style: none; }
+
+    .service-box ul li {
+      font-size: .85rem;
+      color: #444;
+      padding: 8px 0;
+      border-bottom: 1px dashed #eee;
+      display: flex;
+      gap: 10px;
+      line-height: 1.6;
+      align-items: flex-start;
+    }
+
+    .service-box ul li:last-child { border-bottom: none; }
+    .service-box.included ul li::before { content: '✅'; flex-shrink: 0; }
+    .service-box.excluded ul li::before { content: '❌'; flex-shrink: 0; }
+
+    /* ── VOOS ── */
+    .flights-section { background: #EEF2FF; }
+
+    .table-wrap {
+      overflow-x: auto;
+      max-width: 920px;
+      margin: 0 auto;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    thead { background: var(--dark); color: #fff; }
+
+    thead th {
+      padding: 16px 20px;
+      text-align: left;
+      font-size: .82rem;
+      letter-spacing: .8px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    tbody td {
+      padding: 14px 20px;
+      font-size: .85rem;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: middle;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: #f9f5ee; }
+
+    .dir-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: .73rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .dir-badge.ida   { background: #C8E6C9; color: #1B5E20; }
+    .dir-badge.volta { background: #FFCCBC; color: #BF360C; }
+
+    /* ── HOTÉIS ── */
+    .hotels-section { background: #fff; }
+
+    .hotels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+
+    .hotel-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,.09);
+      border-top: 4px solid var(--gold);
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .hotel-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.13);
+    }
+
+    .hotel-card .hotel-icon {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .hotel-card .city {
+      font-size: .73rem;
+      color: var(--gold);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .hotel-card h3 {
+      font-size: 1rem;
+      color: var(--dark);
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .hotel-card .nights {
+      display: inline-block;
+      background: var(--light);
+      border: 1px solid var(--gold);
+      color: var(--dark);
+      font-size: .75rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .hotel-card p {
+      font-size: .8rem;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    .hotel-card .stars {
+      color: var(--gold);
+      font-size: .95rem;
+      margin-top: 10px;
+      letter-spacing: 2px;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--dark) 0%, #2C1654 100%);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 14px;
+    }
+
+    .cta-section p {
+      color: #bbb;
+      margin-bottom: 10px;
+      font-size: .95rem;
+    }
+
+    .cta-section .highlight {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 40px;
+      display: block;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      padding: 16px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: .95rem;
+      letter-spacing: .5px;
+      transition: opacity .3s, transform .3s;
+    }
+
+    .cta-btn:hover { opacity: .85; transform: translateY(-3px); }
+    .cta-btn.whatsapp { background: #25D366; color: #fff; }
+    .cta-btn.email    { background: var(--gold); color: var(--dark); }
+    .cta-btn.insta    {
+      background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+      color: #fff;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d0d1a;
+      color: #777;
+      text-align: center;
+      padding: 44px 20px;
+      font-size: .8rem;
+    }
+
+    footer img {
+      height: 52px;
+      margin-bottom: 18px;
+      filter: brightness(0) invert(1) opacity(.5);
+    }
+
+    footer p { margin-bottom: 6px; line-height: 1.7; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      nav { padding: 12px 20px; }
+      .timeline::before { left: 22px; }
+      .day-number { width: 46px; height: 46px; font-size: .88rem; }
+      .day { gap: 18px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.2rem; }
+      .badge { padding: 8px 16px; font-size: .8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <img src="Logo_fundo_transparente.png" alt="Oficina de Turismo"/>
+  <ul>
+    <li><a href="#essenciais">Essenciais</a></li>
+    <li><a href="#roteiro">Roteiro</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#voos">Voos</a></li>
+    <li><a href="#hoteis">Hotéis</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <img class="hero-logo" src="Logo_fundo_transparente.png" alt="Oficina de Turismo"/>
+  <h1>Peru com Amigos</h1>
+  <p class="subtitle">✈ 31 de Outubro de 2026 &nbsp;|&nbsp; 8 Dias · 7 Noites</p>
+  <div class="badges">
+    <span class="badge">🏛 Lima</span>
+    <span class="badge">🏔 Cusco</span>
+    <span class="badge">🌿 Vale Sagrado</span>
+    <span class="badge">🗿 Machu Picchu</span>
+  </div>
+  <p class="scroll-hint">↓ Explore o roteiro</p>
+</section>
+
+<!-- ══════════ ESSENCIAIS ══════════ -->
+<section class="essentials" id="essenciais">
+  <div class="section-title">
+    <span>Antes de viajar</span>
+    <h2>Informações Essenciais</h2>
+    <div class="line"></div>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="icon">🛂</div>
+      <h3>Visto</h3>
+      <p>Passageiros brasileiros <strong>não precisam de visto</strong> para entrar no Peru.</p>
+    </div>
+    <div class="info-card">
+      <div class="icon">💉</div>
+      <h3>Vacinas</h3>
+      <p>O Certificado de Febre Amarela <strong>não é obrigatório</strong>, mas é recomendado. Providencie com até <strong>11 dias antes do embarque</strong>.</p>
+    </div>
+    <div class="info-card">
+      <div class="icon">🪪</div>
+      <h3>Documentação</h3>
+      <p>Brasileiros podem entrar somente com a <strong>Carteira de Identidade</strong> (Órgão Oficial com foto recente). Passaporte não é obrigatório.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ROTEIRO ══════════ -->
+<section class="itinerary-bg" id="roteiro">
+  <div class="section-title">
+    <span>8 dias inesquecíveis</span>
+    <h2>Roteiro Dia a Dia</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="day">
+      <div class="day-number">1</div>
+      <div class="day-content">
+        <h3>31 Out — São Paulo › Lima</h3>
+        <p>Embarque no Aeroporto de Guarulhos às <strong>19h00</strong>, voo LA8039. Chegada a Lima às 22h15, assistência e traslado ao hotel. Noite Livre.</p>
+        <div class="tags">
+          <span class="tag blue">✈ Voo Internacional</span>
+          <span class="tag green">🏨 Hotel em Lima</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-number">2</div>
+      <div class="day-content">
+        <h3>01 Nov — Lima</h3>
+        <p>Café da manhã no hotel. Manhã livre. À tarde, tour exclusivo pelo <strong>centro histórico de Lima</strong> (Patrimônio Cultural da Humanidade — Unesco): Convento de Santo Domingo, Catedral de Lima, Praça Maior, Palácio do Governo e visita ao premiado <strong>Museu Larco</strong> .</p>
+        <div class="tags">
+          <span class="tag purple">🏛 Tour Lima</span>
+          <span class="tag gold">☕ Café da manhã incluso</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-number">3</div>
+      <div class="day-content">
+        <h3>02 Nov — Lima › Cusco</h3>
+        <p>Café da manhã. Traslado ao aeroporto. Voo LA2021 às <strong>15h55</strong>, chegada a Cusco às 17h15. Assistência e traslado ao hotel. Dia livre para <strong>aclimatação</strong> — Cusco está a 3.400 m de altitude.</p>
+        <div class="tags">
+          <span class="tag blue">✈ Voo Doméstico Peru</span>
+          <span class="tag green">🏨 Hotel em Cusco</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-number">4</div>
+      <div class="day-content">
+        <h3>03 Nov — Cusco</h3>
+        <p>Manhã: visita a <strong>Sacsayhuamán</strong> (cidadela inca colossal), Qenqo, Puca Pucará e Tambomachay. Tarde: Praça de San Cristóbal (vista panorâmica), Mercado de San Pedro, <strong>Templo de Koricancha</strong>, Igreja de Santo Domingo, bairro San Blas, a famosa <strong>Pedra dos Doze Ângulos</strong> e visita à Catedral na Praça de Armas.</p>
+        <div class="tags">
+          <span class="tag purple">🏔 Tour Arqueológico</span>
+          <span class="tag gold">☕ Café da manhã incluso</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-number">5</div>
+      <div class="day-content">
+        <h3>04 Nov — Cusco › Vale Sagrado</h3>
+        <p>Café da manhã. Tour ao <strong>Vale Sagrado dos Incas</strong>: Pisac Inca e Colonial, compras no mercado de artesanatos, <strong>Museu Inkari</strong> (culturas pré-hispânicas) e <strong>Museu da Cultura Viva de Yucay</strong> — conheça e alimente lhamas e alpacas e aprenda técnicas milenares de tingimento de tecido. Hospedagem no Vale Sagrado.</p>
+        <div class="tags">
+          <span class="tag green">🌿 Vale Sagrado</span>
+          <span class="tag gold">🍽 Almoço incluso</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-number">6</div>
+      <div class="day-content">
+        <h3>05 Nov — Vale Sagrado</h3>
+        <p>Café da manhã. Visita a <strong>Moray</strong> (espetaculares terraços concêntricos), <strong>Salinas de Maras</strong> (minas de sal milenares de época colonial — contraste imperdível entre o branco dos poços e o verde do vale) e <strong>Ollantaytambo</strong> (pitoresco povoado inca com templo-fortaleza). Hospedagem no Vale Sagrado.</p>
+        <div class="tags">
+          <span class="tag green">🌿 Vale Sagrado</span>
+          <span class="tag gold">🍽 Almoço incluso</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-number">7</div>
+      <div class="day-content">
+        <h3>06 Nov — Vale Sagrado › Machu Picchu › Cusco</h3>
+        <p>Café da manhã. Partida de trem <strong>Vistadome</strong> para Aguas Calientes. Subida panorâmica às margens do Rio Urubamba. Visita guiada à <strong>Machu Picchu</strong> — uma das 7 Maravilhas do Mundo —, com seus terraços, escadarias, recintos cerimoniais e áreas urbanas. Tempo livre para explorar. Almoço incluso. Retorno de trem a Cusco.</p>
+        <div class="tags">
+          <span class="tag blue">🚂 Trem Vistadome</span>
+          <span class="tag purple">🗿 Machu Picchu</span>
+          <span class="tag gold">🍽 Almoço incluso</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-number">8</div>
+      <div class="day-content">
+        <h3>07 Nov — Cusco › São Paulo</h3>
+        <p>Café da manhã. Transfer ao aeroporto. Voo LA2128 Cusco–Lima às <strong>09h05</strong> (chegada 10h40). Conexão: voo LA8099 Lima–Guarulhos às <strong>13h05</strong>, chegada às 19h55. <strong>Fim da viagem!</strong></p>
+        <div class="tags">
+          <span class="tag blue">✈ Retorno a São Paulo</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ SERVIÇOS ══════════ -->
+<section class="services-section" id="servicos">
+  <div class="section-title">
+    <span>Transparência total</span>
+    <h2>O que está incluído?</h2>
+    <div class="line"></div>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-box included">
+      <h3>✅ Serviços Incluídos</h3>
+      <ul>
+        <li>Bloqueio aéreo LATAM (classe econômica) GRU/LIM/GRU com 1 bagagem despachada de 23 kg</li>
+        <li>Guia local em <strong>português</strong> durante todos os serviços no Peru</li>
+        <li>2 noites em Lima com café da manhã</li>
+        <li>Traslados aeroporto / hotel / aeroporto em Lima</li>
+        <li>Tour meio dia em Lima + Museu Larco</li>
+        <li>3 noites em Cusco com café da manhã</li>
+        <li>2 noites no Vale Sagrado com café da manhã</li>
+        <li>Traslados aeroporto / hotel / estação de trem em Cusco e Vale Sagrado</li>
+        <li>Tour meio dia em Cusco</li>
+        <li>Tour meio dia no Parque Arqueológico de Sacsayhuamán</li>
+        <li>Tour dia inteiro — Moray, Salinas de Maras e Ollantaytambo (almoço incluso)</li>
+        <li>Tour dia inteiro — Pisac, Museu Inkari e Museu da Cultura Viva de Yucay (almoço incluso)</li>
+        <li>Trem Vistadome — Machu Picchu ida e volta</li>
+        <li>Tour dia inteiro em Machu Picchu (almoço incluso)</li>
+      </ul>
+    </div>
+
+    <div class="service-box excluded">
+      <h3>❌ Não Incluídos</h3>
+      <ul>
+        <li>Taxas de embarque aeroportuárias (aprox. USD 80,00 por pessoa)</li>
+        <li>Bebidas durante as refeições inclusas</li>
+        <li>Trechos aéreos internos no Brasil (se necessário)</li>
+        <li>Seguro de assistência de viagem</li>
+        <li>No trem: apenas 1 mochila/bolsa de mão até 5 kg permitida</li>
+        <li>Tudo que não estiver especificado como incluso</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ VOOS ══════════ -->
+<section class="flights-section" id="voos">
+  <div class="section-title">
+    <span>LATAM Airlines</span>
+    <h2>Voos Previstos</h2>
+    <div class="line"></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Direção</th>
+          <th>Trecho</th>
+          <th>Data</th>
+          <th>Voo</th>
+          <th>Saída</th>
+          <th>Chegada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="dir-badge ida">IDA</span></td>
+          <td>✈ Guarulhos → Lima</td>
+          <td>31 Out 2026</td>
+          <td><strong>LA8039</strong></td>
+          <td>19:00</td>
+          <td>22:15</td>
+        </tr>
+        <tr>
+          <td><span class="dir-badge ida">IDA</span></td>
+          <td>✈ Lima → Cusco</td>
+          <td>02 Nov 2026</td>
+          <td><strong>LA2021</strong></td>
+          <td>15:55</td>
+          <td>17:15</td>
+        </tr>
+        <tr>
+          <td><span class="dir-badge volta">VOLTA</span></td>
+          <td>✈ Cusco → Lima</td>
+          <td>07 Nov 2026</td>
+          <td><strong>LA2128</strong></td>
+          <td>09:05</td>
+          <td>10:40</td>
+        </tr>
+        <tr>
+          <td><span class="dir-badge volta">VOLTA</span></td>
+          <td>✈ Lima → Guarulhos</td>
+          <td>07 Nov 2026</td>
+          <td><strong>LA8099</strong></td>
+          <td>13:05</td>
+          <td>19:55</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════ HOTÉIS ══════════ -->
+<section class="hotels-section" id="hoteis">
+  <div class="section-title">
+    <span>Conforto garantido</span>
+    <h2>Hospedagens Previstas</h2>
+    <div class="line"></div>
+  </div>
+  <div class="hotels-grid">
+
+    <div class="hotel-card">
+      <span class="hotel-icon">🏙</span>
+      <p class="city">Lima · Miraflores</p>
+      <h3>Aloft Lima Miraflores</h3>
+      <span class="nights">2 noites</span>
+      <p>ou similar · com café da manhã incluso</p>
+      <p class="stars">★★★★</p>
+    </div>
+
+    <div class="hotel-card">
+      <span class="hotel-icon">🏔</span>
+      <p class="city">Cusco · Centro Histórico</p>
+      <h3>San Agustin Plaza</h3>
+      <span class="nights">3 noites</span>
+      <p>ou similar · com café da manhã incluso</p>
+      <p class="stars">★★★★</p>
+    </div>
+
+    <div class="hotel-card">
+      <span class="hotel-icon">🌿</span>
+      <p class="city">Vale Sagrado · Yucay</p>
+      <h3>Casa Andina Premium Valle Sagrado</h3>
+      <span class="nights">2 noites</span>
+      <p>ou similar · com café da manhã incluso</p>
+      <p class="stars">★★★★</p>
+    </div>
+
+    <div class="hotel-card">
+      <span class="hotel-icon">🚂</span>
+      <p class="city">Ollantaytambo → Aguas Calientes</p>
+      <h3>Trem Vistadome</h3>
+      <span class="nights">Ida e Volta</span>
+      <p>Peru Rail · ou similar</p>
+      <p class="stars">✦ ✦ ✦</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ CTA / CONTATO ══════════ -->
+<section class="cta-section" id="contato">
+  <h2>Garanta sua vaga!</h2>
+  <p>Vagas limitadas · Saída <strong>31 de Outubro de 2026</strong></p>
+  <span class="highlight">✨ Oficina de Turismo · Realizando sonhos há mais de 30 anos</span>
+  <div class="cta-buttons">
+    <a class="cta-btn whatsapp"
+       href="https://wa.me/5535988445517?text=Ol%C3%A1%21+Tenho+interesse+no+pacote+Peru+com+Amigos+2026+%F0%9F%87%B5%F0%9F%87%AA"
+       target="_blank">
+      💬 WhatsApp (35) 98844-5517
+    </a>
+    <a class="cta-btn email"
+       href="mailto:oficinadeturismo@oficinatur.com.br?subject=Interesse%20Peru%20com%20Amigos%202026"
+       target="_blank">
+      📧 Enviar E-mail
+    </a>
+    <a class="cta-btn insta"
+       href="https://instagram.com/oficinadeturismo"
+       target="_blank">
+      📸 @oficinadeturismo
+    </a>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <img src="Logo_fundo_transparente.png" alt="Oficina de Turismo"/>
+  <p>
+    📱 <a href="tel:+5535988445517">(35) 98844-5517</a>
+    &nbsp;·&nbsp;
+    📧 <a href="mailto:oficinadeturismo@oficinatur.com.br">oficinadeturismo@oficinatur.com.br</a>
+    &nbsp;·&nbsp;
+    📸 <a href="https://instagram.com/oficinadeturismo" target="_blank">@oficinadeturismo</a>
+  </p>
+  <p style="margin-top: 12px;">© 2026 Oficina de Turismo · Todos os direitos reservados.</p>
+  <p style="margin-top: 6px; color: #555;">Informações, voos e hotéis sujeitos a alteração sem aviso prévio.</p>
+</footer>
+
+</body>
+</html>
